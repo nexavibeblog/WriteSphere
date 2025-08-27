@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WriteSphere - Home</title>
+    <meta name="robots" content="index, follow">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 font-serif">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <div class="text-3xl font-bold text-gray-800">
+          <a href="/index.html">WriteSphere</a>
+        </div>
+        <nav class="space-x-6">
+          <a href="#" class="text-gray-600 hover:text-gray-900">Home</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900">Topics</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <!-- Featured Posts Section -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6">Featured Stories</h2>
+        <div
+          id="featured-posts"
+          class="grid grid-cols-1 md:grid-cols-2 gap-6"
+        ></div>
+      </section>
+
+      <!-- Recent Posts Section -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Recent Stories</h2>
+        <div
+          id="recent-posts"
+          class="grid grid-cols-1 md:grid-cols-3 gap-6"
+        ></div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-4 text-center">
+        <p class="mb-4">© 2025 WriteSphere. All rights reserved.</p>
+        <div class="space-x-4">
+          <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+          <a href="#" class="hover:text-gray-300">Terms of Service</a>
+          <a href="#" class="hover:text-gray-300">Contact Us</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sample post data
+      const posts = [
+        {
+          id: 1,
+          title: "Webbesucher für Webseite Schweiz",
+          description:
+            "Wie die Webseite mehr Webtraffic- Webbesucher bekommt. Wie bekommt meine Websites mehr Webtraffic? Wie kann man mehr Traffic auf der Website generieren? Lesen Sie hier wie man den Webtraffic der monatliche Besucher ersichtlich erhöhen ",
+          image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-pmHD5WsC_4_ZuVfGf67ZzR9p8jiFl9jrjVMVYcAg3uXA_xIoM3aQBL_UmK_N6tRs_Lr9y-oNYhcDNQ0Z9bgZ32eUVnZw0fOvBiih1tlPMBrkoAO9gtI0KcYJdpkFCFrChf1k70_Is7QVoOaQcw493a_ySfiAksbDTU1_LCoWJHa7UsEoFEjylVdOBOGV/s724/Webbesucher%20fur%20Webseite%20Schweiz.png",
+          date: "Oct 15, 2025",
+          readTime: "8 min read",
+          isFeatured: true,
+          url: "/webbesucher-fur-webseite-schweiz.html",
+        },
+      ];
+
+      // Function to render featured posts
+      function renderFeaturedPosts() {
+        const featuredContainer = document.getElementById("featured-posts");
+        const featuredPosts = posts.filter((post) => post.isFeatured);
+        let html = "";
+
+        featuredPosts.forEach((post, index) => {
+          if (index === 0) {
+            html += `
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="${post.image}" alt="${post.title}" class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2"><a href="${post.url}">${post.title}</a></h3>
+                                <p class="text-gray-600 mb-4">${post.description}</p>
+                                <p class="text-sm text-gray-500">${post.date} · ${post.readTime}</p>
+                            </div>
+                        </div>
+                    `;
+          } else {
+            html += `
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <img src="${post.image}" alt="${post.title}" class="w-24 h-24 object-cover rounded-md mr-4">
+                            <div>
+                                <h4 class="font-semibold"><a href="${post.url}">${post.title}</a></h4>
+                                <p class="text-sm text-gray-600">${post.date} · ${post.readTime}</p>
+                            </div>
+                        </div>
+                    `;
+          }
+        });
+
+        featuredContainer.innerHTML = html;
+      }
+
+      // Function to render recent posts
+      function renderRecentPosts() {
+        const recentContainer = document.getElementById("recent-posts");
+        const recentPosts = posts.filter((post) => !post.isFeatured);
+        let html = "";
+
+        recentPosts.forEach((post) => {
+          html += `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2">${post.title}</h3>
+                            <p class="text-gray-600 mb-4">${post.description}</p>
+                            <p class="text-sm text-gray-500">${post.date} · ${post.readTime}</p>
+                        </div>
+                    </div>
+                `;
+        });
+
+        recentContainer.innerHTML = html;
+      }
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", () => {
+        renderFeaturedPosts();
+        renderRecentPosts();
+      });
+    </script>
+  </body>
+</html>
